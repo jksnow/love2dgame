@@ -2,16 +2,25 @@
 
 local StateManager = {}
 
-StateManager.states = {} -- Store all state objects (e.g., MainMenu, Gameplay)
+StateManager.states = {} -- Store state *instances*
 StateManager.currentState = nil
 
-function StateManager:register(states)
-    for name, state in pairs(states) do
-        self.states[name] = state
-        if state.load then
-            state:load() -- Allow states to do initial setup
+function StateManager:register(stateDefinitions)
+    print("Registering state definitions...")
+    for name, stateDefinition in pairs(stateDefinitions) do
+        print("  Registering and instantiating:", name)
+        if type(stateDefinition) == 'table' and stateDefinition.new then
+            -- Create an instance of the state
+            local stateInstance = stateDefinition:new()
+            self.states[name] = stateInstance
+            -- Call load on the instance if it exists
+            if stateInstance.load then
+                stateInstance:load()
+            end
+            print("    -> Registered state instance:", name)
+        else
+            print("Warning: Invalid state definition for", name, ". Expected table with :new() method.")
         end
-        print("Registered state:", name)
     end
 end
 

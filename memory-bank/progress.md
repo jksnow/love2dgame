@@ -22,14 +22,14 @@ Project setup is underway. The Memory Bank foundation is being laid. Core Love2D
 
 - [ ] Set up Love2D development environment. (Assumed mostly done by user)
 - [DONE] Establish basic project structure (folders for assets, libraries, modules, core files).
-- [WIP] Create the main game loop (`love.load`, `love.update`, `love.draw`). (Basic structure implemented)
-- [WIP] Implement basic state management (e.g., main menu, game state, pause menu).
+- [DONE] Create the main game loop (`love.load`, `love.update`, `love.draw`). (Basic structure implemented, delegated to states)
+- [DONE] Implement basic state management (e.g., main menu, game state, pause menu).
 
 ### Core Visuals - ASCII Pseudo-3D Rendering:
 
-- [ ] Research and choose a method for ASCII rendering (e.g., tilemap based, direct character drawing).
+- [WIP] Research and choose a method for ASCII rendering (e.g., tilemap based, direct character drawing). (Focusing on direct character drawing with layering)
 - [ ] Design or source an appropriate ASCII character set/font.
-- [ ] Implement the basic top-down rendering engine.
+- [WIP] Implement the basic top-down rendering engine.
 - [ ] Develop the core logic for the "pseudo-3D" effect (representing height/depth with characters/layers).
 - [ ] Implement rendering of basic environment tiles.
 - [ ] Implement rendering of player character glyph/sprite.
@@ -86,6 +86,12 @@ Project setup is underway. The Memory Bank foundation is being laid. Core Love2D
 - [ ] Integrate an audio library/use Love2D's built-in audio.
 - [ ] Implement sound effects for actions (movement, combat, interaction, UI).
 - [ ] Add background music and atmospheric sounds.
+
+### Lighting:
+
+- [ ] Design basic lighting system principles (e.g., ambient light, point lights).
+- [ ] Implement light value calculation for map cells.
+- [ ] Modify rendering to apply lighting to tile colors.
 
 ### Refinement & Polish:
 

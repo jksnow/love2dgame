@@ -68,7 +68,7 @@ function MainMenu:handleSelection()
         -- This requires access to the StateManager. We'll handle this in main.lua for now.
         print("Start Game selected (implement state switching)")
         -- Example: SM:switch("Gameplay") -- Need a reference to StateManager
-        require("src.StateManager"):switch("Gameplay")
+        require("src/StateManager"):switch("Gameplay")
     elseif selected == "Quit" then
         love.event.quit()
     else
@@ -76,6 +76,36 @@ function MainMenu:handleSelection()
     end
 end
 
+-- Add mouse support for menu selection
+function MainMenu:mousepressed(x, y, button, istouch, presses)
+    -- Only handle left mouse button clicks
+    if button ~= 1 then return end
+    
+    local font = love.graphics.getFont()
+    local lineHeight = font:getHeight()
+    local width = love.graphics.getWidth()
+    local height = love.graphics.getHeight()
+    
+    -- Check if click was on any menu option
+    for i, option in ipairs(self.options) do
+        local optionY = height / 2 + (i - 1) * lineHeight * 1.5
+        -- Calculate rough boundaries of the menu option text
+        local textWidth = font:getWidth(option)
+        local textX = width/2 - textWidth/2
+        
+        -- Simple hit test - expand clickable area slightly for better UX
+        local hitPadding = 10
+        if y >= optionY - hitPadding and y <= optionY + lineHeight + hitPadding and
+           x >= textX - hitPadding and x <= textX + textWidth + hitPadding then
+            -- Update selection and handle it
+            self.selectedOption = i
+            self:handleSelection()
+            return
+        end
+    end
+end
+
 -- Add other needed Love callbacks if necessary
 
-return MainMenu:new() -- Return an instance of the state 
+-- Return the MainMenu table definition, not an instance
+return MainMenu 

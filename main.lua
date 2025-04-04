@@ -2,7 +2,7 @@
 -- Entry point for the ASCII Survival Horror game
 
 -- Require the StateManager first
-local StateManager = require("src.StateManager")
+local StateManager = require("src/StateManager")
 
 function love.load()
     print("Game Loading...")
@@ -12,8 +12,8 @@ function love.load()
 
     -- Register all states
     local states = {
-        MainMenu = require("src.states.MainMenu"),
-        Gameplay = require("src.states.Gameplay")
+        MainMenu = require("src/states/MainMenu"),
+        Gameplay = require("src/states/Gameplay")
         -- Add other states here as they are created
     }
     StateManager:register(states)
